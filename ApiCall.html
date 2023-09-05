@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  
+.card {
+    background-color: #f9f9f9;
+    border-radius: 40px;
+    padding: 20px;
+    width: 300px;
+    height: 400px;
+    margin: 20px auto;
+    margin-top:90px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); */
+}
+.card-body-line {
+    width: 100%; /* Adjust the width as needed */
+    border: 1px solid #ccc; /* Define the line style */
+    margin-top: 15px; /* Adjust the margin to control the space between text and line */
+}
+.card-body-img {
+    
+    max-width: 100%;
+    height:140px;
+    border-radius: 9px;
+    margin-bottom: 3px;
+}
+
+.card-body-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.card-body-text {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+.card-footer{
+    display: flex;
+    justify-content:space-around;
+
+}
+.card-footer-social{
+    text-align:center;
+    margin-top:2rem;
+    margin-bottom:2rem;
+    margin-right:2rem;
+    margin-left: 1.2rem;
+}
+
+.card-footer-social h3{
+    margin:auto;
+    word-spacing: 2px;;
+}
+.card-footer-social p{
+    font-size: small;
+    letter-spacing:1px;
+   
+}
+.card:hover{
+    transform:scale(0.9,0.9);
+   
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+       
+    </div>
+<script>
+    const container=document.querySelector('#container');
+    const request=new XMLHttpRequest();
+    request.open('GET',"https://restcountries.com/v3.1/name/nepal");
+    request.send();
+    // to get the response
+    request.addEventListener('load',function(){
+    //    const data= this.responseText
+    const[data]=JSON.parse(this.responseText);
+    // console.log(data.capital)
+    const htmlData=`
+        
+<div id="card">
+        <article class="card">
+            <div class="card-body">
+                <img src="${data.flags.png}" alt="" class="card-body-img">
+                <h1 class="card-body-title">
+                    <span>${data.name.common}</span>
+                </h1>
+                <p class="card-body-text">
+                    capital:${data.capital}
+                </p>
+
+            </div>
+            <hr class="card-body-line">
+            <div class="card-footer">
+                <div class="card-footer-social">
+                    <h3>${data.languages.nep}</h3>
+                    <p>Native Language</p>
+                </div>
+                <div class="card-footer-social">
+                    <h3>${data.population}</h3>
+                    <p>population</p>
+                </div>
+                <div class="card-footer-social">
+                    <h3>${data.demonyms.eng.f}</h3>
+                    <p>Demonym</p>
+                </div>
+            </div>
+        </article>
+       </div>
+    `;
+    container.insertAdjacentHTML("afterbegin",htmlData)
+    })
+</script>
+</body>
+</html>
