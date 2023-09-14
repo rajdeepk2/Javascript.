@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=FAMILY_NAME:wght@WEIGHT_OR_RANGE&display=swap');
+       *{
+        margin: 0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: "Mulish",sans-serif;
+       }
+       body{
+        width:100vw;
+        height:100vh;
+        background-color: #f8e7af;
+        display: grid;
+        place-items:center;
+        place-content: center;
+        
+       }
+       form{
+        background-color: #fab1a0;
+        padding:80px;
+        width:100%;
+        margin:100px auto;
+        -webkit-box-shadow:0 10px 6px -6px #777;
+        -moz-box-shadow:0 10px 6px -6px #777;
+        box-shadow: 0 10px 6px -6px #777;
+       }
+       #tempCalc label{
+        font-size:30px;
+       }
+       #temp{
+        border:none;
+        padding:10px;
+        height:40px;
+        width:100px;
+        font-size:20px;
+        margin-top:20px;
+        margin-left:200px;
+       }
+       #temp_diff{
+        margin-top:20px;
+        height: 40px;
+        width:110px;
+        border:none;
+        margin-bottom:20px;
+        font-size:15px;
+        vertical-align: top;
+        margin-left:10px;
+       }
+       [type="submit"]{
+        height:35px;
+        margin:20px;
+        width:110px;
+        font-size:15px;
+        border:none;
+        background-color: black;
+        color:white;
+       }
+       #resultContainer{
+        font-size:30px;
+        color:rgb(233, 44, 44);
+        margin-left:210px;
+       }
+    </style>
+    <title>Temperature Converter</title>
+</head>
+<body>
+    <form id="tempCalc" onsubmit="calculateTemp();return false" >  <!-- form automatic submit na ho isliye false; -->
+   <br/> <label for="temp">Please enter the temperature you'd like to convert.</label>
+    <br/><input type="number" name="temp" id="temp">
+    <select name="temp_diff" id="temp_diff">
+        <option value="cel">°Celsius</option>
+        <option value="fah">°Fahrenheit</option>
+    </select>
+    <br>
+    <input type="submit" name="temp" id="temp" style="margin-left: 260px;margin-top:10px;"><br>
+    <span id="resultContainer"></span>
+    </form>
+    <script>
+        const calculateTemp=()=>{
+          const numbertemp=document.getElementById('temp').value;
+           const tempselected=document.getElementById('temp_diff');
+           const valueTemp=temp_diff.options[tempselected.selectedIndex].value;   //cel or fah 
+           const celtofah=(cel)=>{
+             let Fahrenheit=Math.round((cel*9/5)+32);
+             return Fahrenheit;
+        }
+          const fahtocel=(fah)=>{
+            let Celcius=Math.round((fah-32)*5/9);
+             return Celcius;
+        }
+           let result;
+           if(valueTemp=='cel'){
+                result=celtofah(numbertemp);
+                document.getElementById('resultContainer').innerHTML=`= ${result} °Fahrenheit`;
+           }
+           else{
+            result=fahtocel(numbertemp);
+            document.getElementById('resultContainer').innerHTML=`= ${result } °Celcius`;
+           }
+        }
+       
+    </script>
+</body>
+</html>
