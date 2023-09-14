@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    .outerdiv{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:720px;
+        background-color: rgb(14, 14, 59);
+    }
+    #text{
+        color:white;
+        font-size:75px;
+    }
+  </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="outerdiv">
+        <div class="innerdiv">
+          <h1 id="text">I am <br>Thermometer <span id="temp" class="fa"></span></h1>
+        </div>
+    </div>
+   <script>
+    const tempload=()=>{
+        let temp=document.getElementById('temp');
+        temp.innerHTML="&#xf2cb;";
+    
+    setTimeout(()=>{
+        temp.innerHTML="&#xf2ca;";
+        temp.style.color="#f8b627";
+    },1000);
+    setTimeout(()=>{
+        temp.innerHTML="&#xf2c9;";
+    },2000);
+    setTimeout(()=>{
+        temp.innerHTML="&#xf2c8;";
+    },3000);
+    setTimeout(()=>{
+        temp.innerHTML="&#xf2c7;";
+        temp.style.color="#d63031";
+    },4000);
+}
+    tempload();//kisi p depend nhi krta on the spot call hota
+    //  after full infinte time chlta rhe
+    setInterval(tempload,5000);
+   </script> 
+</body>
+</html>
